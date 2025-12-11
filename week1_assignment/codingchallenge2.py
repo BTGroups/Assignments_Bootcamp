@@ -10,5 +10,11 @@ if __name__ == "__main__":
         rate_of_interest= float(input("Enter the rate of interest: "))
         time_period = float(input("Enter the time period: "))
         print("Simple Interest: ", simpleinterest(principal_amount, rate_of_interest, time_period))
+    except ValueError:
+        print("ValueError: You must enter numeric values only.")
+    except TypeError:
+        print("TypeError: Invalid Type encountered during calculation.")
+    except ZeroDivisionError:
+        print("ZeroDivisionError : Division by zero occurred.")
     except Exception as e:
-        print("Errored occured: ", e)
+        print(f"Errored occured: ({type(e).__name__}) : {e}",)
