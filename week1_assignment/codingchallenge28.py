@@ -57,6 +57,7 @@ if __name__ == "__main__":
         membership_discount = grand_total * 0.02
         grand_total -= membership_discount
 
+
     print("\n------- Discounts Applied -------")
     print(f"10% Discount (if > 10000):        ₹{discount_10:.2f}")
     print(f"5% Quantity Discount (if qty>20): ₹{discount_5:.2f}")
