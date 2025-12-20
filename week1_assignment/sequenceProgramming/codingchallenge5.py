@@ -32,6 +32,6 @@ def calculate_sales():
 
 if __name__ == "__main__":
     total, chemical_free = calculate_sales()
-    print("Total Sales from 80 acres: ₹{:,.2f}".format(total))  
-    print("Sales from chemical-free farming at 11 months: ₹{:,.2f}".format(chemical_free))
+    print("Total Sales from 80 acres: {:,.2f}".format(total))  
+    print("Sales from chemical-free farming at 11 months: {:,.2f}".format(chemical_free))
 
