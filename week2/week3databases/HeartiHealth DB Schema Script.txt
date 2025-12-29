@@ -1,0 +1,352 @@
+
+
+CREATE TABLE IF NOT EXISTS  `memberinfo` (
+
+  `member_id` VARCHAR(45) NOT NULL,
+
+  `username` VARCHAR(45) NULL DEFAULT NULL,
+
+  `firstname` VARCHAR(45) NULL DEFAULT NULL,
+
+  `lastname` VARCHAR(45) NULL DEFAULT NULL,
+
+  `age` INT(11) NULL DEFAULT NULL,
+
+  `gender` VARCHAR(45) NULL DEFAULT NULL,
+
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+
+  `phonenumber` BIGINT(100) NULL DEFAULT NULL,
+
+  PRIMARY KEY (`member_id`))
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `addressinfo`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `addressinfo` (
+
+  `address_id` VARCHAR(45) NOT NULL,
+
+  `city` VARCHAR(45) NULL DEFAULT NULL,
+
+  `state` VARCHAR(45) NULL DEFAULT NULL,
+
+  `country` VARCHAR(45) NULL DEFAULT NULL,
+
+  `pincode` VARCHAR(45) NULL DEFAULT NULL,
+
+  `memberinfo_member_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`address_id`, `memberinfo_member_id`),
+
+  INDEX `fk_addressinfo_memberinfo_idx` (`memberinfo_member_id` ASC),
+
+  CONSTRAINT `fk_addressinfo_memberinfo`
+
+    FOREIGN KEY (`memberinfo_member_id`)
+
+    REFERENCES  `memberinfo` (`member_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `cardiodiagnosis`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `cardiodiagnosis` (
+
+  `cardio_id` VARCHAR(45) NOT NULL,
+
+  `cardioarrestdetected` INT(11) NULL DEFAULT NULL,
+
+  `date` DATETIME NULL DEFAULT NULL,
+
+  `memberinfo_member_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`cardio_id`, `memberinfo_member_id`),
+
+  INDEX `fk_cardiodiagnosis_memberinfo1_idx` (`memberinfo_member_id` ASC),
+
+  CONSTRAINT `fk_cardiodiagnosis_memberinfo1`
+
+    FOREIGN KEY (`memberinfo_member_id`)
+
+    REFERENCES  `memberinfo` (`member_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `bloodtest`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `bloodtest` (
+
+  `blood_id` VARCHAR(45) NOT NULL,
+
+  `date` DATETIME NULL DEFAULT NULL,
+
+  `bloodpressure` INT(11) NULL DEFAULT NULL,
+
+  `fbs` INT(11) NULL DEFAULT NULL,
+
+  `thal` INT(11) NULL DEFAULT NULL,
+
+  `serumcholesterol` INT(11) NULL DEFAULT NULL,
+
+  `cardiodiagnosis_cardio_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`blood_id`, `cardiodiagnosis_cardio_id`),
+
+  INDEX `fk_bloodtest_cardiodiagnosis1_idx` (`cardiodiagnosis_cardio_id` ASC),
+
+  CONSTRAINT `fk_bloodtest_cardiodiagnosis1`
+
+    FOREIGN KEY (`cardiodiagnosis_cardio_id`)
+
+    REFERENCES  `cardiodiagnosis` (`cardio_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `diseasedetail`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `diseasedetail` (
+
+  `disease_id` VARCHAR(45) NOT NULL,
+
+  `diagnoseddate` DATETIME NULL DEFAULT NULL,
+
+  `recovereddate` DATETIME NULL DEFAULT NULL,
+
+  `isrecovered` TINYINT(1) NULL DEFAULT NULL,
+
+  `cardiodiagnosis_cardio_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`disease_id`, `cardiodiagnosis_cardio_id`),
+
+  INDEX `fk_dieseasedetail_cardiodiagnosis1_idx` (`cardiodiagnosis_cardio_id` ASC),
+
+  CONSTRAINT `fk_dieseasedetail_cardiodiagnosis1`
+
+    FOREIGN KEY (`cardiodiagnosis_cardio_id`)
+
+    REFERENCES  `cardiodiagnosis` (`cardio_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `ecgreport`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `ecgreport` (
+
+  `ecg_id` VARCHAR(45) NOT NULL,
+
+  `date` DATETIME NULL DEFAULT NULL,
+
+  `restecg` INT(11) NULL DEFAULT NULL,
+
+  `cardiodiagnosis_cardio_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`ecg_id`, `cardiodiagnosis_cardio_id`),
+
+  INDEX `fk_ecgreport_cardiodiagnosis1_idx` (`cardiodiagnosis_cardio_id` ASC),
+
+  CONSTRAINT `fk_ecgreport_cardiodiagnosis1`
+
+    FOREIGN KEY (`cardiodiagnosis_cardio_id`)
+
+    REFERENCES  `cardiodiagnosis` (`cardio_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `symptom`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `symptom` (
+
+  `symptom_id` VARCHAR(45) NOT NULL,
+
+  `date` DATETIME NULL DEFAULT NULL,
+
+  `exang` INT(11) NULL DEFAULT NULL,
+
+  `oldpeak` FLOAT NULL DEFAULT NULL,
+
+  `cp` INT(11) NULL DEFAULT NULL,
+
+  `cardiodiagnosis_cardio_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`symptom_id`, `cardiodiagnosis_cardio_id`),
+
+  INDEX `fk_symptom_cardiodiagnosis1_idx` (`cardiodiagnosis_cardio_id` ASC),
+
+  CONSTRAINT `fk_symptom_cardiodiagnosis1`
+
+    FOREIGN KEY (`cardiodiagnosis_cardio_id`)
+
+    REFERENCES  `cardiodiagnosis` (`cardio_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `wearabledevicedata`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `wearabledevicedata` (
+
+  `wearable_device_id` VARCHAR(45) NOT NULL,
+
+  `thalach` INT(11) NULL DEFAULT NULL,
+
+  `slope` INT(11) NULL DEFAULT NULL,
+
+  `date` DATETIME NULL DEFAULT NULL,
+
+  `cardiodiagnosis_cardio_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`wearable_device_id`, `cardiodiagnosis_cardio_id`),
+
+  INDEX `fk_wearabledevicedata_cardiodiagnosis1_idx` (`cardiodiagnosis_cardio_id` ASC),
+
+  CONSTRAINT `fk_wearabledevicedata_cardiodiagnosis1`
+
+    FOREIGN KEY (`cardiodiagnosis_cardio_id`)
+
+    REFERENCES  `cardiodiagnosis` (`cardio_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+
+-- -----------------------------------------------------
+
+-- Table  `xray`
+
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS  `xray` (
+
+  `xray_id` VARCHAR(45) NOT NULL,
+
+  `date` DATETIME NULL DEFAULT NULL,
+
+  `ca` INT(11) NULL DEFAULT NULL,
+
+  `cardiodiagnosis_cardio_id` VARCHAR(45) NOT NULL,
+
+  PRIMARY KEY (`xray_id`, `cardiodiagnosis_cardio_id`),
+
+  INDEX `fk_xray_cardiodiagnosis1_idx` (`cardiodiagnosis_cardio_id` ASC),
+
+  CONSTRAINT `fk_xray_cardiodiagnosis1`
+
+    FOREIGN KEY (`cardiodiagnosis_cardio_id`)
+
+    REFERENCES  `cardiodiagnosis` (`cardio_id`)
+
+    ON DELETE NO ACTION
+
+    ON UPDATE NO ACTION)
+
+ENGINE = InnoDB
+
+DEFAULT CHARACTER SET = latin1;
+
+
+
+
+

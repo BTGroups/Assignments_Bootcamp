@@ -16,7 +16,6 @@ class Program:
 
                 emp_id = input("Id : ").strip()
 
-                # Name validation
                 while True:
                     name = input("Name : ").strip()
                     if name.replace(" ", "").isalpha():
@@ -31,7 +30,7 @@ class Program:
                     except ValueError:
                         print("Enter numeric value for Basic.")
 
-                # HRA
+           
                 while True:
                     try:
                         hra = float(input("HRA : "))
@@ -39,7 +38,7 @@ class Program:
                     except ValueError:
                         print("Enter numeric value for HRA.")
 
-                # Allowance %
+    
                 while True:
                     try:
                         allowance_percentage = float(input("Percentage of Allowance : "))
@@ -47,7 +46,7 @@ class Program:
                     except ValueError:
                         print("Enter numeric value for Allowance Percentage.")
 
-                # Role
+          
                 print("Enter Role Id : ")
                 print(f"{Roles.DEVELOPER}. {RoleBuilder.get_role_description(Roles.DEVELOPER)}")
                 print(f"{Roles.TEST_ENGINEER}. {RoleBuilder.get_role_description(Roles.TEST_ENGINEER)}")
@@ -77,7 +76,7 @@ class Program:
                 if confirm == "N":
                     emp.set_emp_details(emp_id, name, basic, hra, allowance_percentage, role)
                     employees[i] = emp
-                    break   # move to NEXT employee
+                    break   
                 else:
                     print("\nRe-enter employee details...\n")
 

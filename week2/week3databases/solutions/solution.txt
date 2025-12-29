@@ -1,0 +1,689 @@
+# problem 1 : Get all the predictions
+SELECT 
+	m.member_id,
+	m.firstname, 
+	m.lastname,
+	c.cardio_id,
+	s.symptom_id,
+	s.symptom_date,
+	s.exang,
+	s.oldpeak,
+	s.cp,
+	w.thalach,
+	w.slope
+FROM
+	symptom s
+JOIN
+	cardiodiagnosis c ON s.cardio_id = c.cardio_id 
+JOIN 
+	memberinfo m ON c.member_id = m.member_id
+JOIN 
+	wearabledevicedata w on c.cardio_id = w.cardio_id
+
+#problem 2 : preditctions for the day 
+SELECT *
+FROM cardiodiagnosis;
+
+
+#problem 3
+SELECT *
+FROM cardiodiagnosis
+ORDER BY probability DESC;
+
+
+#problem 4
+select distinct a.city from addressinfo as a;
+
+#problem 5
+SELECT 
+	m.member_id,
+	m.firstname,
+	m.lastname,
+	m.age,
+	m.gender
+FROM
+	memberinfo as m
+JOIN 
+	addressinfo a ON m.member_id = a.member_id
+WHERE
+	a.city = 'Burgos'
+
+
+
+#problem 6 : Get people from flora city
+SELECT 
+	m.member_id,
+	m.firstname,
+	m.lastname,
+	m.age,
+	m.gender
+FROM
+	memberinfo as m
+JOIN 
+	addressinfo a ON m.member_id = a.member_id
+WHERE
+	a.city = 'Flora'
+	
+
+#problem 7: get the total number of blood tests done for aisha
+SELECT 
+
+	m.firstname,
+	COUNT(b.blood_id) AS number_of_blood_tests
+FROM
+	memberinfo as m
+JOIN 
+	addressinfo a ON m.member_id = a.member_id
+JOIN 
+	cardiodiagnosis c ON m.member_id = c.member_id
+JOIN 
+	bloodtest b ON c.cardio_id = b.cardio_id
+WHERE
+	m.firstname = 'aisha'
+GROUP BY
+	m.firstname;
+
+
+
+#problem 8: get the xray details of ajay whose cardio test was done on 26 jan 2019
+SELECT 
+	m.firstname,
+	x.xray_id,
+	x.xray_date,
+	x.ca as constrast_agent
+
+FROM
+	memberinfo as m
+JOIN 
+	addressinfo a ON m.member_id = a.member_id
+JOIN 
+	cardiodiagnosis c ON m.member_id = c.member_id
+JOIN 
+	xray as x ON x.cardio_id = c.cardio_id
+WHERE
+	m.firstname = 'ajay'
+
+
+#problem 9
+SELECT 
+	m.member_id,
+	m.firstname,
+	m.lastname,
+    m.age,
+    m.gender
+
+FROM
+	memberinfo as m
+JOIN 
+	addressinfo a ON m.member_id = a.member_id
+WHERE
+	a.city = 'Burgos' or a.city = 'Flora'
+
+
+#problem 10
+SELECT 
+
+	m.lastname,
+	COUNT(b.blood_id) as number_of_blood_test
+
+FROM
+	memberinfo as m
+JOIN
+	cardiodiagnosis c on c.member_id = m.member_id
+JOIN 
+	bloodtest as b ON b.cardio_id = c.cardio_id
+WHERE 
+	m.lastname = 'aberson'
+GROUP BY
+	m.lastname
+
+
+#problem 11
+SELECT 
+	m.member_id,
+	a.address_id,
+	a.city,
+	a.state,
+	a.country,
+	a.pincode
+FROM	
+	memberinfo as m
+JOIN 
+	addressinfo as a ON a.member_id = m.member_id 
+WHERE
+	m.member_id = 'M303'
+
+
+
+#PRoblem 12 
+SELECT 
+	c.cardio_id,
+	x.xray_id,
+	x.xray_date,
+	x.ca as constrast_integer
+FROM	
+	cardiodiagnosis as c
+JOIN 
+	xray as x on x.cardio_id = c.cardio_id
+WHERE
+	c.cardio_id = 'cid122'
+
+
+
+#problem 13 : list all the symptom details whose carsio id cid250 and cid300
+SELECT 
+	c.cardio_id,
+	s.symptom_id,
+	s.symptom_date, 
+	s.exang,
+	s.oldpeak,
+	s.cp
+FROM	
+	symptom as s
+JOIN 
+	cardiodiagnosis as c on c.cardio_id = s.cardio_id
+WHERE
+	c.cardio_id = 'cid300' or c.cardio_id = 'cid250'
+
+
+#problem 14 : get all symptom details where month is july and year 2019 
+SELECT 
+	s.symptom_id,
+	s.symptom_date, 
+	s.exang,
+	s.oldpeak,
+	s.cp
+FROM	
+	symptom as s
+WHERE
+	s.symptom_date >=  '2019-07-01' and s.symptom_date <= '2019-07-31'
+	
+
+
+#problem 15 : XRAY DETAILS ON LASTNAME dailley
+SELECT 
+	x.xray_id,
+	x.xray_date,
+	x.ca
+FROM
+	xray as x 
+JOIN
+	cardiodiagnosis as c on c.cardio_id = x.cardio_id
+JOIN
+	memberinfo as m on c.member_id = m.member_id
+WHERE
+	m.lastname = 'dailley'
+
+
+#problem 16 : wearable device daa details for cardio ids cid 100 to cid 200
+SELECT 
+	w.wearable_device_id,
+	w.thalach,
+	w.slope,
+	w.record_date,
+	c.cardio_id
+FROM
+	wearabledevicedata w
+JOIN
+	cardiodiagnosis as c on c.cardio_id = w.cardio_id
+WHERE
+	c.cardio_id between 'cid100' and 'cid200'
+
+
+#problem 17 : allc ardio first name starts with a 
+SELECT 
+	m.firstname,
+	c.cardio_id,
+	c.cardioarrestdetected,
+	c.diagnosis_date,
+	c.member_id
+FROM
+	cardiodiagnosis as c
+JOIN
+	memberinfo as m on c.member_id = m.member_id
+WHERE
+	m.firstname LIKE 'a%';
+
+
+#problem 18: all carsio with firstname start and end with ab 
+SELECT 
+	m.firstname,
+	c.cardio_id,
+	c.cardioarrestdetected,
+	c.diagnosis_date,
+	c.member_id
+FROM
+	cardiodiagnosis as c
+JOIN
+	memberinfo as m on c.member_id = m.member_id
+WHERE
+	m.firstname LIKE 'a%a';
+
+#problem 19 : all members
+SELECT * from public.memberinfo 
+
+#problem 20 : all addresses of members
+select 
+	m.firstname,
+	m.lastname,
+	a.city,
+	a.state,
+	a.country,
+	a.pincode
+from 
+	memberinfo as m 
+JOIN 
+	addressinfo as a on a.member_id = m.member_id
+
+#problem 21 : get a list of werarble information
+select * from public.wearabledevicedata 
+
+#problem 22: blood test 
+select * from public.bloodtest 
+
+#problem 23 : get a list of members who are aged greater than 50 
+select * from memberinfo as m where m.age >= 50; 
+
+#problem 24
+select * from addressinfo as a where a.city = 'Flora'
+
+#problem 25 
+select distinct a.state from addressinfo as a;
+
+#problem 26 
+SELECT 
+	count(*) as totalnumberofmembers
+FROM 
+	memberinfo;
+ 
+
+ #problem 27 
+ SELECT 
+	count(*) as totalnumberofbloodtests
+FROM 
+	bloodtest;
+
+#problem 28 
+SELECT 
+	avg(b.serumcholesterol) as average_cholestrol
+FROM 
+	bloodtest as b;
+
+#problem 29 
+SELECT max(s.oldpeak) as max_peak_value FROM symptom as s;
+
+
+#problem 30
+SELECT * 
+from
+	bloodtest as b
+WHERE
+	b.test_date between '2019-01-01' and '2019-01-31'
+
+
+#problem 31 
+SELECT m.gender , COUNT(m.gender) from memberinfo as m group by m.gender 
+
+
+#problem32 
+SELECT * from bloodtest as b where b.bloodpressure between 100  and 200;
+
+#problem 33
+SELECT
+	m.member_id,
+	m.firstname,
+	m.lastname,
+	s.symptom_id,
+	s.symptom_date,
+	s.exang,
+	s.oldpeak,
+	s.cp
+FROM 
+	memberinfo as m
+JOIN
+	cardiodiagnosis as c on c.member_id = m.member_id
+JOIN 
+	symptom as s on s.cardio_id = c.cardio_id
+
+
+
+#problem 34 
+SELECT
+	avg(m.age) as average_age_of_patients from memberinfo as m;
+
+
+#problem 35 
+select addressinfo.state, count(addressinfo.city) from addressinfo group by addressinfo.state;
+
+#problem 36 
+SELECT 
+    age_group,
+    COUNT(*) AS number_of_patients
+FROM (
+    SELECT
+        CASE
+            WHEN age BETWEEN 10 AND 19 THEN '10-20'
+            WHEN age BETWEEN 20 AND 29 THEN '20-30'
+            WHEN age BETWEEN 30 AND 39 THEN '30-40'
+            WHEN age BETWEEN 40 AND 49 THEN '40-50'
+            WHEN age BETWEEN 50 AND 59 THEN '50-60'
+            WHEN age BETWEEN 60 AND 69 THEN '60-70'
+            ELSE 'Other'
+        END AS age_group
+    FROM memberinfo
+) t
+GROUP BY age_group
+ORDER BY age_group;
+
+
+#probelm 37
+SELECT * from 
+	memberinfo as m 
+JOIN
+	addressinfo as a on a.member_id = m.member_id;
+
+
+
+
+#problem 38 
+SELECT * from 
+	memberinfo as m 
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id;
+
+
+
+
+#problem 39 
+SELECT * from 
+	memberinfo as m 
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id
+JOIN
+	diseasedetail as d on d.cardio_id = c.cardio_id
+
+
+;
+
+
+
+#problem 40 
+
+select 
+	m.firstname,
+	m.lastname
+	
+from
+	memberinfo as m
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id 
+where
+	m.gender = '1' and c.cardioarrestdetected = '1'
+;
+
+
+#problem 41 
+select 
+	m.member_id,
+	m.firstname,
+	m.lastname,
+	c.cardio_id,
+	c.cardioarrestdetected,
+	c.diagnosis_date
+
+from
+	memberinfo as m
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id 
+where
+	m.gender = '1' and m.age >= '50'
+
+;
+
+
+
+#problem 42 
+select 
+	m.firstname,
+	m.lastname
+from
+	memberinfo as m
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id 
+JOIN
+	bloodtest as b on b.cardio_id = c.cardio_id
+where
+	m.gender = '0' and b.bloodpressure >= '140' and c.cardioarrestdetected = '0'
+;
+
+
+#problem 43 
+select 
+	m.firstname,
+	m.lastname
+from
+	memberinfo as m
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id 
+JOIN
+	addressinfo as a on a.member_id = m.member_id
+where
+	a.state = 'Mountain Province' and c.cardioarrestdetected = '1'
+;
+
+
+#problem 44
+select 
+	m.firstname,
+	m.lastname,
+	s.symptom_id,
+	s.symptom_date,
+	s.exang,
+	s.oldpeak,
+	s.cp
+from
+	memberinfo as m
+JOIN
+	cardiodiagnosis as c on m.member_id = c.member_id 
+JOIN
+	symptom as s on s.cardio_id = c.cardio_id
+where
+	m.gender = '1' and m.age <= '40' 
+;
+
+
+#problem 45 
+select 
+	count(*) as members_from_mountain_province 
+from 
+	memberinfo as m
+JOIN
+	addressinfo as a on a.member_id = m.member_id 
+where
+	a.state = 'Mountain Province' and m.age between '50' and '60'
+;
+
+
+#problem 46 
+select 
+	m.gender,
+	count(*) 
+from
+	memberinfo as m 
+JOIN
+	cardiodiagnosis as c on c.member_id = m.member_id
+JOIN
+	bloodtest as b on c.cardio_id = b.cardio_id
+WHERE
+	b.bloodpressure > '140' and c.cardioarrestdetected  ='1'
+group by
+	m.gender;
+
+
+
+#problem 47 
+select 
+	case 
+		when age between 40 and 50 then '40-50'
+		when age between 51 and 60 then '50-60'
+		else 'other'
+	end as age_group,
+	avg(b.bloodpressure) as average_blood_pressure
+from
+	memberinfo as m 
+JOIN
+	cardiodiagnosis as c on c.member_id = m.member_id
+JOIN
+	bloodtest as b on c.cardio_id = b.cardio_id
+WHERE
+	b.bloodpressure > '140' and c.cardioarrestdetected  ='1'
+group by
+	age_group;
+
+
+#problem 48 
+select 
+	case 
+		when m.gender = '1' then 'MALE'
+		WHEN m.gender = '0' then 'female'
+		else 'unk'
+	end as gender,
+	d.disease_id
+from memberinfo m 
+JOIN cardiodiagnosis c on c.member_id = m.member_id JOIN diseasedetail d on d.cardio_id = c.cardio_id
+JOIN
+	bloodtest as b on b.cardio_id = c.cardio_id
+where
+	b.bloodpressure between 120 and 180
+order by
+	gender;
+
+
+#problem 49 
+SELECT
+    DATE_TRUNC('month', x.xray_date) AS xray_month,
+    COUNT(DISTINCT m.member_id) AS people_count
+FROM memberinfo m
+JOIN addressinfo a
+    ON a.member_id = m.member_id
+JOIN cardiodiagnosis c
+    ON c.member_id = m.member_id
+JOIN xray x
+    ON x.cardio_id = c.cardio_id
+WHERE
+    a.state = 'Special Province'
+GROUP BY
+    DATE_TRUNC('month', x.xray_date)
+ORDER BY
+    xray_month;
+
+#problem 50
+SELECT
+    a.state,
+    CASE
+        WHEN m.gender = '1' THEN 'Male'
+        WHEN m.gender = '0' THEN 'Female'
+        ELSE 'Unknown'
+    END AS gender,
+    AVG(m.age::INT) AS average_age
+FROM memberinfo m
+JOIN addressinfo a
+    ON a.member_id = m.member_id
+JOIN cardiodiagnosis c
+    ON c.member_id = m.member_id
+WHERE
+    c.cardioarrestdetected = '1'
+GROUP BY
+    a.state,
+    m.gender
+ORDER BY
+    a.state,
+    gender;
+
+#problem 51
+SELECT
+    a.state,
+    COUNT(DISTINCT m.member_id) AS people_count
+FROM memberinfo m
+JOIN addressinfo a
+    ON a.member_id = m.member_id
+JOIN cardiodiagnosis c
+    ON c.member_id = m.member_id
+JOIN xray x
+    ON x.cardio_id = c.cardio_id
+JOIN symptom s
+    ON s.cardio_id = c.cardio_id
+JOIN wearabledevicedata  w
+	ON w.cardio_id = c.cardio_id
+WHERE
+    c.cardioarrestdetected = '1'
+    AND w.slope = 2
+GROUP BY
+    a.state
+ORDER BY
+    a.state;
+
+/*
+1. What do you need - Columns that you need as part of the output
+	we need numberfhighrisk, state, gender, averageage, aaegaecholestrol, averagebllodpressure
+2. Where do you have the information that you need - Tables
+	wearbledevice, addressinfo, memberinfo, cardiodiagnosis, bloodpressure, xray, sympotoms
+3. Connections - Joins - How do you join the tables to get the information
+	join wearbledevice, addressinfo, memberinfo, cardiodiagnosis, bloodprssusre
+	join xray and memberinfo
+	join symptm and memberinfo
+4. Join Conditions
+	inner join the xray and memberinfo
+	others notmal join
+5. Other conditions apart from join
+6. Aggregate function to be used
+7. Group, Having
+8. SubQuery and/or any other predicates
+9. Order in which the information has to be displayed
+
+
+*/
+
+
+
+SELECT
+	a.state,
+	m.gender,
+	sum(case 
+		when c.cardioarrestdetected = 1 and m.age > 45 
+		and b.bloodpressure >= 140 and w.slope = 2 and
+		exists(select 1 from xray as x where x.cardio_id = c.cardio_id) 
+		and exists(select 1 from symptom as s where s.cardio_id = c.cardio_id)
+		then 1 else 0 end) as numberofhighriskpatients,
+	avg(m.age) as Average_age ,
+	avg(b.bloodpressure) as BloodPressure_average ,
+	avg(b.serumcholesterol) as average_cholesterol
+from
+	memberinfo as m
+join
+	cardiodiagnosis as c on c.member_id = m.member_id
+join 
+	bloodtest as b on b.cardio_id = c.cardio_id
+join 
+	wearabledevicedata as w on w.cardio_id = c.cardio_id
+join
+	addressinfo as a on a.member_id = m.member_id
+group by m.gender, a.state
+
+
+functionailty , wehre do i store this data 
+what data elements do i need 
+
+who are teh actors who are gonna come into play 
+
+positibve negative 
+
+whenever we get a problem statement
+dont start wrtinig the query right away, not for anything
+The approach is mandatory 
+
+if we write those steps , it will be faster
+ undeetstanding the data elemenet
+ what does things mean 
+ depth person is needed 
+ need loudness in teh voice

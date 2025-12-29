@@ -10,7 +10,7 @@ class Program:
         print("Enter employee information")
 
         for i in range(len(employees)):
-            while True:   # allows re-entry for SAME employee
+            while True:   
                 emp = Employee()
                 print("\nEmployee No : " + str(i + 1))
 
