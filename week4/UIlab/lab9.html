@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 9 – Polished Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Smooth transition for hover/focus effects */
+    .transition-all {
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 bg-white dark:bg-gray-800 shadow-md z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="font-bold text-xl">Dashboard</div>
+        <nav class="hidden md:flex space-x-6">
+          <a href="#" class="transition-all hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2">Home</a>
+          <a href="#" class="transition-all hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2">Topics</a>
+          <a href="#" class="transition-all hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2">Labs</a>
+          <a href="#" class="transition-all hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2">Profile</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-6 grid gap-6 md:grid-cols-2">
+
+    <!-- Topics Explorer (Collapsible) -->
+    <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md transition-all">
+      <h2 class="text-xl font-semibold mb-4">Topics Explorer</h2>
+
+      <details class="border-b border-gray-200 dark:border-gray-700 mb-2 transition-all">
+        <summary class="py-2 cursor-pointer font-medium hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 transition-all">Module 1: HTML Basics</summary>
+        <div class="pl-4 mt-2 space-y-1">
+          <div>Unit 1</div>
+          <div class="pl-4">Topic 1: Elements</div>
+          <div class="pl-4">Topic 2: Attributes</div>
+        </div>
+      </details>
+
+      <details class="border-b border-gray-200 dark:border-gray-700 mb-2 transition-all">
+        <summary class="py-2 cursor-pointer font-medium hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 transition-all">Module 2: CSS Basics</summary>
+        <div class="pl-4 mt-2 space-y-1">
+          <div>Unit 1</div>
+          <div class="pl-4">Topic 1: Selectors</div>
+          <div class="pl-4">Topic 2: Colors</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Labs Tracker -->
+    <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md transition-all">
+      <h2 class="text-xl font-semibold mb-4">Labs Tracker</h2>
+
+      <div class="mb-4 transition-all">
+        <div class="flex justify-between mb-1 text-base">
+          <span>HTML Basics</span>
+          <span>100%</span>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+          <div class="bg-green-500 h-4 rounded-full w-full transition-all"></div>
+        </div>
+      </div>
+
+      <div class="mb-4 transition-all">
+        <div class="flex justify-between mb-1 text-base">
+          <span>CSS Basics</span>
+          <span>60%</span>
+        </div>
+        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+          <div class="bg-green-500 h-4 rounded-full w-[60%] transition-all"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Module -->
+    <section class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md transition-all md:col-span-2">
+      <h2 class="text-xl font-semibold mb-4">Gallery</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Gallery Item -->
+        <div class="relative overflow-hidden rounded-lg shadow-md gallery-item transition-all">
+          <img src="https://via.placeholder.com/300x200" alt="Image 1" class="w-full h-48 object-cover transition-all duration-300 hover:scale-105">
+          <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center p-1 opacity-0 hover:opacity-100 transition-all">Image 1</div>
+        </div>
+        <div class="relative overflow-hidden rounded-lg shadow-md gallery-item transition-all">
+          <img src="https://via.placeholder.com/300x200" alt="Image 2" class="w-full h-48 object-cover transition-all duration-300 hover:scale-105">
+          <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center p-1 opacity-0 hover:opacity-100 transition-all">Image 2</div>
+        </div>
+        <div class="relative overflow-hidden rounded-lg shadow-md gallery-item transition-all">
+          <img src="https://via.placeholder.com/300x200" alt="Image 3" class="w-full h-48 object-cover transition-all duration-300 hover:scale-105">
+          <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white text-center p-1 opacity-0 hover:opacity-100 transition-all">Image 3</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

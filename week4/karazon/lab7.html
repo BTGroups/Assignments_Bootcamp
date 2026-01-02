@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 7 - LocalStorage</title>
+</head>
+<body>
+
+<h2>Persistent Cart with LocalStorage</h2>
+
+<script>
+    // Sample cart & invoice data
+    let cartItems = [
+        { itemCode: "I101", name: "Shoes", qty: 2, price: 1500 },
+        { itemCode: "I102", name: "Socks", qty: 3, price: 200 }
+    ];
+
+    let invoiceData = {
+        totalAmount: 3600,
+        discount: 360,
+        finalAmount: 3240
+    };
+
+    let email = "student@karazon.in";
+    let timestamp = new Date().toLocaleString();
+
+    // STEP 1: SAVE TO LOCALSTORAGE
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("invoiceData", JSON.stringify(invoiceData));
+    localStorage.setItem("email", email);
+    localStorage.setItem("timestamp", timestamp);
+
+    console.log("Cart and invoice saved to localStorage");
+
+    // STEP 2: CHECK IF DATA EXISTS
+    let savedCart = localStorage.getItem("cartItems");
+
+    if (savedCart) {
+        let resume = confirm("Previous cart found. Resume?");
+        
+        if (resume) {
+            let loadedCart = JSON.parse(savedCart);
+            let loadedInvoice = JSON.parse(localStorage.getItem("invoiceData"));
+
+            console.log("Resumed Cart:", loadedCart);
+            console.log("Resumed Invoice:", loadedInvoice);
+        } else {
+            localStorage.clear();
+            console.log("Starting fresh cart");
+        }
+    }
+</script>
+
+</body>
+</html>

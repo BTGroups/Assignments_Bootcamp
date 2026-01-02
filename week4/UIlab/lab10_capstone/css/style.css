@@ -1,0 +1,50 @@
+/* style.css - Custom enhancements for hover, transitions, dark mode */
+
+/* Smooth hover transitions for buttons, cards, and images */
+.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for gallery images */
+.gallery-item img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gallery-item:hover .caption {
+  opacity: 1;
+}
+
+/* Dark mode background and text overrides if needed */
+.dark body {
+  background-color: #111827;
+  color: #f3f4f6;
+}
+
+.dark .bg-white {
+  background-color: #1f2937; /* Tailwind gray-800 */
+}
+
+.dark .text-gray-900 {
+  color: #f3f4f6;
+}
+
+.dark .border-gray-200 {
+  border-color: #374151; /* Tailwind gray-700 */
+}

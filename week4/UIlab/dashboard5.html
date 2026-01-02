@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Level 5 Dashboard (No JS)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Responsive Navigation -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="font-bold text-xl">Lab Dashboard</div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-6">
+          <a href="#" class="text-gray-700 hover:text-blue-500">Home</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Topics</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Labs</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 grid gap-6 md:grid-cols-2">
+
+    <!-- Topics Explorer -->
+    <section class="bg-white p-4 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Topics Explorer</h2>
+
+      <!-- Module 1 -->
+      <details class="border-b border-gray-200 mb-2">
+        <summary class="py-2 cursor-pointer font-medium">Module 1: HTML Basics</summary>
+        <div class="pl-4 mt-2 space-y-1">
+          <div>Unit 1</div>
+          <div class="pl-4">Topic 1: Elements</div>
+          <div class="pl-4">Topic 2: Attributes</div>
+          <div>Unit 2</div>
+          <div class="pl-4">Topic 1: Forms</div>
+        </div>
+      </details>
+
+      <!-- Module 2 -->
+      <details class="border-b border-gray-200 mb-2">
+        <summary class="py-2 cursor-pointer font-medium">Module 2: CSS Basics</summary>
+        <div class="pl-4 mt-2 space-y-1">
+          <div>Unit 1</div>
+          <div class="pl-4">Topic 1: Selectors</div>
+          <div class="pl-4">Topic 2: Colors</div>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- Labs Tracker -->
+    <section class="bg-white p-4 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Labs Tracker</h2>
+
+      <!-- Lab Item -->
+      <div class="mb-4">
+        <div class="flex justify-between mb-1 text-sm md:text-base">
+          <span>HTML Basics</span>
+          <span>100%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-4 md:h-5">
+          <div class="bg-green-500 h-4 md:h-5 rounded-full w-full"></div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex justify-between mb-1 text-sm md:text-base">
+          <span>CSS Basics</span>
+          <span>60%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-4 md:h-5">
+          <div class="bg-green-500 h-4 md:h-5 rounded-full" style="width: 60%"></div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

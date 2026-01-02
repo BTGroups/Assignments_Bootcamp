@@ -1,0 +1,20 @@
+seeing browrser compatibility, we see the last 2-3 versions
+the developers are based on the non functional requirements
+
+request responsse lifecylce 
+ISP
+Domain name
+DNS ISP NAT TLD Regional Domains, Hosting meaning, shared and dedicated
+cost of hosting 
+supabase
+how is the costing arrived at
+http and https 
+what happens with the certificate
+waht is the key, how does it get exchanged
+prepare for an intro before coming 
+scripting injection
+apis  , how do peiple consume and how does it generally cost and all about it 
+
+
+prggormming assessment
+more complexity will be thre

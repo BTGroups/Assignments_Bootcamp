@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Level 4 Dashboard (No JS)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="max-w-6xl mx-auto p-6">
+
+    <h1 class="text-3xl font-bold mb-6">Lab Dashboard</h1>
+
+    <!-- Topics Explorer -->
+    <section class="mb-8 bg-white p-4 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Topics Explorer</h2>
+
+      <!-- Module 1 -->
+      <details class="border-b border-gray-200 mb-2">
+        <summary class="py-2 cursor-pointer font-medium">Module 1: HTML Basics</summary>
+        <div class="pl-4 mt-2 space-y-1">
+          <div>Unit 1</div>
+          <div class="pl-4">Topic 1: Elements</div>
+          <div class="pl-4">Topic 2: Attributes</div>
+          <div>Unit 2</div>
+          <div class="pl-4">Topic 1: Forms</div>
+        </div>
+      </details>
+
+      <!-- Module 2 -->
+      <details class="border-b border-gray-200 mb-2">
+        <summary class="py-2 cursor-pointer font-medium">Module 2: CSS Basics</summary>
+        <div class="pl-4 mt-2 space-y-1">
+          <div>Unit 1</div>
+          <div class="pl-4">Topic 1: Selectors</div>
+          <div class="pl-4">Topic 2: Colors</div>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- Labs Tracker -->
+    <section class="bg-white p-4 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Labs Tracker</h2>
+
+      <!-- Lab Item -->
+      <div class="mb-4">
+        <div class="flex justify-between mb-1 text-base">
+          <span>HTML Basics</span>
+          <span>100%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-4">
+          <div class="bg-green-500 h-4 rounded-full w-full"></div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="flex justify-between mb-1 text-base">
+          <span>CSS Basics</span>
+          <span>60%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-4">
+          <div class="bg-green-500 h-4 rounded-full" style="width: 60%"></div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

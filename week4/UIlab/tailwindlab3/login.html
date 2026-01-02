@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Tailwind</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Custom CSS still applied */
+        .custom-shadow {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
+<div class="bg-white p-6 rounded-lg w-80 custom-shadow">
+    <h2 class="text-center text-xl font-bold mb-4">Login</h2>
+
+    <form class="space-y-3">
+        <input type="email" placeholder="Email"
+            class="w-full border p-2 rounded">
+
+        <input type="password" placeholder="Password"
+            class="w-full border p-2 rounded">
+
+        <button class="bg-blue-600 text-white w-full py-2 rounded">
+            Login
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
